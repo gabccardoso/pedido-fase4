@@ -45,7 +45,7 @@ public class GerenciadorAutenticacao {
         }
     }
 
-        private Long verificaSeUsuarioExiste(ClientDTO clientDTO){
+        public Long verificaSeUsuarioExiste(ClientDTO clientDTO){
             try {
                 Client client = Optional.ofNullable(clientInteractor.findClientByCPF(clientDTO.getCpf()))
                         .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado para o CPF: " + clientDTO.getCpf()));
