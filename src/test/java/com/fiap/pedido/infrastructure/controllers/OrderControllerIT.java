@@ -33,7 +33,7 @@ public class OrderControllerIT {
     }
 
     @Test
-    @Sql(scripts = {"/clean_order.sql", "/data_order.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = {"/data_order.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void devePermitirBuscarPedidos(){
         given()
                 .filter(new AllureRestAssured())
@@ -45,9 +45,8 @@ public class OrderControllerIT {
     }
 
     @Test
-    @Sql(scripts = {"/clean_order.sql", "/data_order.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void devePermitirCriarPedidos(){
-        OrderDTO orderDTO = new OrderDTO(1L, new Date(), new ArrayList<>());
+        OrderDTO orderDTO = new OrderDTO(10L, new Date(), new ArrayList<>());
         given()
                 .filter(new AllureRestAssured())
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -59,11 +58,11 @@ public class OrderControllerIT {
     }
 
     @Test
-    @Sql(scripts = {"/clean_order.sql", "/data_order.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = { "/data_order.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void devePermitirAdicionarItens(){
         long pedidoId = 1L;
         Map<Long, Integer> itensPedido = new HashMap<>();
-        itensPedido.put(1001L, 2); // Exemplo de item com ID 1001 e quantidade 2
+        itensPedido.put(1L, 2); // Exemplo de item com ID 1001 e quantidade 2
 
         // Executar a solicitação POST para adicionar itens ao pedido
         given()
